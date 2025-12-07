@@ -1,0 +1,54 @@
+//
+//  LoginViewModel.swift
+//  SpotFinder
+//
+//  Created by MAC on 07/12/25.
+//
+
+import Foundation
+import Combine
+import FirebaseAuth
+
+@MainActor
+class LoginViewModel:ObservableObject{
+    
+    @Published var emailLogin:String = ""
+    @Published var password:String = ""
+    @Published var error:String = ""
+    @Published var isLoading:Bool = false
+    private var cancellables = Set<AnyCancellable>()
+   
+    func isEmailValid()->Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: emailLogin)
+    }
+    
+    func isVaidPassword()->Bool{
+        if password == "" || password.count < 6{
+            error = "Password must be at least 6 characters"
+            return false
+        }
+        return true
+    }
+  
+    func login(){
+        if !isEmailValid(){
+            error = "Please enter valid email"
+            return
+        }
+        if !isVaidPassword(){
+            return
+        }
+        
+        isLoading = true
+        Auth.auth().signIn(withEmail: emailLogin, password: password) {[weak self] (authResult, error) in
+                self?.isLoading = false
+            if let error = error{
+                self?.error = error.localizedDescription
+            }else{
+                print("User login")
+            }
+        }
+    }
+}

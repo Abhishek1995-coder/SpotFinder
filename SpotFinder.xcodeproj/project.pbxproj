@@ -6,6 +6,21 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		04239E762EE4C6F300C3DC68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04239E732EE4C6F300C3DC68 /* ContentView.swift */; };
+		04239E772EE4C6F300C3DC68 /* SpotFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04239E742EE4C6F300C3DC68 /* SpotFinderApp.swift */; };
+		04239E782EE4C6F300C3DC68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04239E722EE4C6F300C3DC68 /* Assets.xcassets */; };
+		04239E7B2EE4C81400C3DC68 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04239E7A2EE4C81400C3DC68 /* LocationManager.swift */; };
+		046A6B172EE5AD2500EF6104 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 046A6B162EE5AD2500EF6104 /* GoogleService-Info.plist */; };
+		046A6B1A2EE5AD9D00EF6104 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A6B192EE5AD9D00EF6104 /* RegisterViewModel.swift */; };
+		046A6B1C2EE5B24C00EF6104 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A6B1B2EE5B24C00EF6104 /* LoginViewModel.swift */; };
+		046A6B1F2EE5B2DF00EF6104 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046A6B1E2EE5B2DF00EF6104 /* LoginView.swift */; };
+		047504972EE4ADBC00109F6C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 047504962EE4ADBC00109F6C /* FirebaseAuth */; };
+		047504992EE4ADBC00109F6C /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 047504982EE4ADBC00109F6C /* FirebaseCore */; };
+		0475049B2EE4ADBC00109F6C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0475049A2EE4ADBC00109F6C /* FirebaseDatabase */; };
+		0475049D2EE4ADBC00109F6C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0475049C2EE4ADBC00109F6C /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		047504792EE4AAB200109F6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,17 +39,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04239E722EE4C6F300C3DC68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04239E732EE4C6F300C3DC68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		04239E742EE4C6F300C3DC68 /* SpotFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotFinderApp.swift; sourceTree = "<group>"; };
+		04239E7A2EE4C81400C3DC68 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		04239E7C2EE4C89A00C3DC68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		046A6B162EE5AD2500EF6104 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		046A6B192EE5AD9D00EF6104 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		046A6B1B2EE5B24C00EF6104 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		046A6B1E2EE5B2DF00EF6104 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0475046B2EE4AAAF00109F6C /* SpotFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047504782EE4AAB200109F6C /* SpotFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		047504822EE4AAB200109F6C /* SpotFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0475046D2EE4AAAF00109F6C /* SpotFinder */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SpotFinder;
-			sourceTree = "<group>";
-		};
 		0475047B2EE4AAB200109F6C /* SpotFinderTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SpotFinderTests;
@@ -52,6 +71,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0475049B2EE4ADBC00109F6C /* FirebaseDatabase in Frameworks */,
+				0475049D2EE4ADBC00109F6C /* FirebaseFirestore in Frameworks */,
+				047504992EE4ADBC00109F6C /* FirebaseCore in Frameworks */,
+				047504972EE4ADBC00109F6C /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,10 +95,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04239E752EE4C6F300C3DC68 /* SpotFinder */ = {
+			isa = PBXGroup;
+			children = (
+				046A6B1D2EE5B2C600EF6104 /* AuthView */,
+				046A6B182EE5AD8000EF6104 /* AuthViewModel */,
+				04239E7C2EE4C89A00C3DC68 /* Info.plist */,
+				046A6B162EE5AD2500EF6104 /* GoogleService-Info.plist */,
+				04239E792EE4C7F800C3DC68 /* LocationHelper */,
+				04239E722EE4C6F300C3DC68 /* Assets.xcassets */,
+				04239E732EE4C6F300C3DC68 /* ContentView.swift */,
+				04239E742EE4C6F300C3DC68 /* SpotFinderApp.swift */,
+			);
+			path = SpotFinder;
+			sourceTree = "<group>";
+		};
+		04239E792EE4C7F800C3DC68 /* LocationHelper */ = {
+			isa = PBXGroup;
+			children = (
+				04239E7A2EE4C81400C3DC68 /* LocationManager.swift */,
+			);
+			path = LocationHelper;
+			sourceTree = "<group>";
+		};
+		046A6B182EE5AD8000EF6104 /* AuthViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				046A6B192EE5AD9D00EF6104 /* RegisterViewModel.swift */,
+				046A6B1B2EE5B24C00EF6104 /* LoginViewModel.swift */,
+			);
+			path = AuthViewModel;
+			sourceTree = "<group>";
+		};
+		046A6B1D2EE5B2C600EF6104 /* AuthView */ = {
+			isa = PBXGroup;
+			children = (
+				046A6B1E2EE5B2DF00EF6104 /* LoginView.swift */,
+			);
+			path = AuthView;
+			sourceTree = "<group>";
+		};
 		047504622EE4AAAF00109F6C = {
 			isa = PBXGroup;
 			children = (
-				0475046D2EE4AAAF00109F6C /* SpotFinder */,
+				04239E752EE4C6F300C3DC68 /* SpotFinder */,
 				0475047B2EE4AAB200109F6C /* SpotFinderTests */,
 				047504852EE4AAB200109F6C /* SpotFinderUITests */,
 				0475046C2EE4AAAF00109F6C /* Products */,
@@ -107,11 +170,12 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				0475046D2EE4AAAF00109F6C /* SpotFinder */,
-			);
 			name = SpotFinder;
 			packageProductDependencies = (
+				047504962EE4ADBC00109F6C /* FirebaseAuth */,
+				047504982EE4ADBC00109F6C /* FirebaseCore */,
+				0475049A2EE4ADBC00109F6C /* FirebaseDatabase */,
+				0475049C2EE4ADBC00109F6C /* FirebaseFirestore */,
 			);
 			productName = SpotFinder;
 			productReference = 0475046B2EE4AAAF00109F6C /* SpotFinder.app */;
@@ -195,6 +259,9 @@
 			);
 			mainGroup = 047504622EE4AAAF00109F6C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				047504952EE4ADBC00109F6C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0475046C2EE4AAAF00109F6C /* Products */;
 			projectDirPath = "";
@@ -212,6 +279,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04239E782EE4C6F300C3DC68 /* Assets.xcassets in Resources */,
+				046A6B172EE5AD2500EF6104 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +305,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046A6B1F2EE5B2DF00EF6104 /* LoginView.swift in Sources */,
+				04239E762EE4C6F300C3DC68 /* ContentView.swift in Sources */,
+				04239E772EE4C6F300C3DC68 /* SpotFinderApp.swift in Sources */,
+				04239E7B2EE4C81400C3DC68 /* LocationManager.swift in Sources */,
+				046A6B1C2EE5B24C00EF6104 /* LoginViewModel.swift in Sources */,
+				046A6B1A2EE5AD9D00EF6104 /* RegisterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +472,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +504,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotFinder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -570,6 +647,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		047504952EE4ADBC00109F6C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		047504962EE4ADBC00109F6C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047504952EE4ADBC00109F6C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		047504982EE4ADBC00109F6C /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047504952EE4ADBC00109F6C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		0475049A2EE4ADBC00109F6C /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047504952EE4ADBC00109F6C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		0475049C2EE4ADBC00109F6C /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 047504952EE4ADBC00109F6C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 047504632EE4AAAF00109F6C /* Project object */;
 }
