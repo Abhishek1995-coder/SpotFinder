@@ -19,6 +19,10 @@
 		047504992EE4ADBC00109F6C /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 047504982EE4ADBC00109F6C /* FirebaseCore */; };
 		0475049B2EE4ADBC00109F6C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0475049A2EE4ADBC00109F6C /* FirebaseDatabase */; };
 		0475049D2EE4ADBC00109F6C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0475049C2EE4ADBC00109F6C /* FirebaseFirestore */; };
+		971D51F72EE5FFDB002FF4CF /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F52EE5FFDB002FF4CF /* MapViewModel.swift */; };
+		971D51F92EE5FFDB002FF4CF /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F62EE5FFDB002FF4CF /* Place.swift */; };
+		971D51FA2EE5FFDB002FF4CF /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F42EE5FFDB002FF4CF /* MapScreen.swift */; };
+		971D51FB2EE5FFDB002FF4CF /* LocationManagerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F22EE5FFDB002FF4CF /* LocationManagerNew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		0475046B2EE4AAAF00109F6C /* SpotFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047504782EE4AAB200109F6C /* SpotFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		047504822EE4AAB200109F6C /* SpotFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		971D51F22EE5FFDB002FF4CF /* LocationManagerNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerNew.swift; sourceTree = "<group>"; };
+		971D51F42EE5FFDB002FF4CF /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
+		971D51F52EE5FFDB002FF4CF /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		971D51F62EE5FFDB002FF4CF /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -98,6 +106,7 @@
 		04239E752EE4C6F300C3DC68 /* SpotFinder */ = {
 			isa = PBXGroup;
 			children = (
+				971D51F12EE5FFB6002FF4CF /* SpotMap */,
 				046A6B1D2EE5B2C600EF6104 /* AuthView */,
 				046A6B182EE5AD8000EF6104 /* AuthViewModel */,
 				04239E7C2EE4C89A00C3DC68 /* Info.plist */,
@@ -153,6 +162,17 @@
 				047504822EE4AAB200109F6C /* SpotFinderUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		971D51F12EE5FFB6002FF4CF /* SpotMap */ = {
+			isa = PBXGroup;
+			children = (
+				971D51F22EE5FFDB002FF4CF /* LocationManagerNew.swift */,
+				971D51F42EE5FFDB002FF4CF /* MapScreen.swift */,
+				971D51F52EE5FFDB002FF4CF /* MapViewModel.swift */,
+				971D51F62EE5FFDB002FF4CF /* Place.swift */,
+			);
+			path = SpotMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +325,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971D51F72EE5FFDB002FF4CF /* MapViewModel.swift in Sources */,
+				971D51F92EE5FFDB002FF4CF /* Place.swift in Sources */,
+				971D51FA2EE5FFDB002FF4CF /* MapScreen.swift in Sources */,
+				971D51FB2EE5FFDB002FF4CF /* LocationManagerNew.swift in Sources */,
 				046A6B1F2EE5B2DF00EF6104 /* LoginView.swift in Sources */,
 				04239E762EE4C6F300C3DC68 /* ContentView.swift in Sources */,
 				04239E772EE4C6F300C3DC68 /* SpotFinderApp.swift in Sources */,
@@ -470,20 +494,24 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2FLMC6SRKL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpotFinder/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need background location access for continuous tracking.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show relevant nearby data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.SpotFinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esperanza.game;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -502,20 +530,24 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2FLMC6SRKL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpotFinder/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need background location access for continuous tracking.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show relevant nearby data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.SpotFinder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.esperanza.game;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;

@@ -7,9 +7,5 @@
 		<string>location</string>
 		<string>processing</string>
 	</array>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need your location to show relevant nearby data.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>We need background location access for continuous tracking.</string>
 </dict>
 </plist>

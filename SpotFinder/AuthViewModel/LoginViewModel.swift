@@ -16,6 +16,7 @@ class LoginViewModel:ObservableObject{
     @Published var password:String = ""
     @Published var error:String = ""
     @Published var isLoading:Bool = false
+    @Published var isLoginSuccess = false
     private var cancellables = Set<AnyCancellable>()
    
     func isEmailValid()->Bool{
@@ -48,6 +49,7 @@ class LoginViewModel:ObservableObject{
                 self?.error = error.localizedDescription
             }else{
                 print("User login")
+                self?.isLoginSuccess = true
             }
         }
     }
