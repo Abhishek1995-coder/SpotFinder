@@ -11,16 +11,48 @@ struct LoginView: View {
     
     @StateObject var loginVM = LoginViewModel()
     @State private var showingSheet = false
+    @State private var showLogoutAlert = false
     
     var body: some View {
         if loginVM.isLoginSuccess{
-            MapScreen()
+            VStack{
+                ZStack(alignment: .trailing){
+                    Text("SpotFinder")
+                        .frame(maxWidth: .infinity)
+                    Text("\(loginVM.name.uppercased().first ?? "J")")
+                        .padding(8)
+                        .background(Circle().fill(.gray).opacity(0.3))
+                        .padding(.trailing, 10)
+                        .onTapGesture {
+                            showLogoutAlert = true
+                        }
+                }
+                .alert("Are you sure you want to Logout?", isPresented: $showLogoutAlert, actions: {
+                    Button("OK") {
+                        loginVM.isLoginSuccess = false
+                    }
+                    
+                    Button("Cancel") {
+                        showLogoutAlert = false
+                    }
+                })
+                .frame(maxWidth: .infinity)
+                MapScreen()
+            }
         } else{
             VStack(spacing: 24) {
                 Text("Login ")
                     .font(.system(size: 34, weight: .bold))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 VStack{
+                    TextField("Name", text: $loginVM.name)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .autocorrectionDisabled()
+                        .padding()
+                        .background(.gray.opacity(0.3))
+                        .cornerRadius(14)
+                    
                     TextField("Email", text: $loginVM.emailLogin)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
