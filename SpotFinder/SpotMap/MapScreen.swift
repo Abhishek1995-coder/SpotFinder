@@ -66,7 +66,6 @@ struct MapScreen: View {
         }
         .ignoresSafeArea()
 
-        //.mapControls(.all)
         .onAppear {
             LocationManagerNew.shared.requestLocation()
         }
