@@ -20,6 +20,13 @@ struct ContentView: View {
                 .font(.system(size: 34, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             VStack{
+                TextField("Name", text: $registerVM.name)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                    .padding()
+                    .background(.gray.opacity(0.3))
+                    .cornerRadius(14)
                 TextField("Email", text: $registerVM.email)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
@@ -37,6 +44,8 @@ struct ContentView: View {
                     .clipShape(Rectangle())
                     .background(.gray.opacity(0.3))
                     .cornerRadius(14)
+                Toggle("Register as a admin", isOn: $registerVM.isChecked)
+                    .padding()
             }
             // ERROR MESSAGE
             if !registerVM.error.isEmpty {

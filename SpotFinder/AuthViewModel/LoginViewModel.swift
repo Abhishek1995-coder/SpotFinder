@@ -8,17 +8,20 @@
 import Foundation
 import Combine
 import FirebaseAuth
+import FirebaseDatabase
 
 @MainActor
 class LoginViewModel:ObservableObject{
     
     @Published var emailLogin:String = "akash.viet007@gmail.com"
-    @Published var name:String = ""
     @Published var password:String = "abc123"
+    @Published var name:String = ""
     @Published var error:String = ""
     @Published var isLoading:Bool = false
     @Published var isLoginSuccess = false
+    @Published var islocationupdate = false
     private var cancellables = Set<AnyCancellable>()
+    let ref = Database.database().reference()
    
     func isEmailValid()->Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -54,4 +57,5 @@ class LoginViewModel:ObservableObject{
             }
         }
     }
+    
 }

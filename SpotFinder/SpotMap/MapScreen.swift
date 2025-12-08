@@ -97,3 +97,19 @@ extension CLLocationCoordinate2D {
         return loc1.distance(from: loc2) // distance in meters
     }
 }
+extension MKMapView{
+    func mapView(_ mapView: MKMapView,
+                 annotationView view: MKAnnotationView,
+                 didChange newState: MKAnnotationView.DragState,
+                 fromOldState oldState: MKAnnotationView.DragState) {
+
+        if newState == .ending {
+            view.dragState = .none
+            
+            if let coord = view.annotation?.coordinate {
+                print("Final Latitude: \(coord.latitude)")
+                print("Final Longitude: \(coord.longitude)")
+            }
+        }
+    }
+}
