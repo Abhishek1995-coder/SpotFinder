@@ -14,7 +14,6 @@ import FirebaseDatabase
 class LoginViewModel:ObservableObject{
     
     @Published var emailLogin:String = "akash.viet007@gmail.com"
-    @Published var name:String = ""
     @Published var password:String = "abc123"
     @Published var error:String = ""
     @Published var isLoading:Bool = false
@@ -58,17 +57,4 @@ class LoginViewModel:ObservableObject{
         }
     }
     
-   
-    
-    func getData(){
-        ref.child("Admin").child("parking").observe(.value) {[weak self] snapshot in
-            for child in snapshot.children {
-                if let snap = child as? DataSnapshot,
-                   let message = snap.key as? String {
-                    print("\(message)")
-                    self?.islocationupdate = true
-                }
-            }
-        }
-    }
 }

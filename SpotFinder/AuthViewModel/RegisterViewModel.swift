@@ -14,6 +14,7 @@ import FirebaseDatabase
 class RegisterViewModel: ObservableObject {
     
     @Published var email:String = ""
+    @Published var name:String = ""
     @Published var password:String = ""
     @Published var confirmPassword:String = ""
     @Published var error:String = ""
@@ -91,12 +92,10 @@ class RegisterViewModel: ObservableObject {
     }
     
     func registerUser(){
-        ref.child("Users").childByAutoId().setValue(["email": email, "isAdmin": true]) { error, _ in
+        ref.child("Users").childByAutoId().setValue(["email": email,"name":name,"isAdmin": true]) { error, _ in
             if let error = error {
                 print("Error writing data: \(error)")
-            } else {
-               
-            }
+            } 
         }
     }
 }

@@ -20,6 +20,13 @@ struct ContentView: View {
                 .font(.system(size: 34, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             VStack{
+                TextField("Name", text: $registerVM.name)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                    .padding()
+                    .background(.gray.opacity(0.3))
+                    .cornerRadius(14)
                 TextField("Email", text: $registerVM.email)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
