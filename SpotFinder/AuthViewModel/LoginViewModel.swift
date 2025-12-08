@@ -15,6 +15,7 @@ class LoginViewModel:ObservableObject{
     
     @Published var emailLogin:String = "akash.viet007@gmail.com"
     @Published var password:String = "abc123"
+    @Published var name:String = ""
     @Published var error:String = ""
     @Published var isLoading:Bool = false
     @Published var isLoginSuccess = false

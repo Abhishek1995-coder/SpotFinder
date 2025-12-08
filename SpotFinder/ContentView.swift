@@ -44,6 +44,8 @@ struct ContentView: View {
                     .clipShape(Rectangle())
                     .background(.gray.opacity(0.3))
                     .cornerRadius(14)
+                Toggle("Register as a admin", isOn: $registerVM.isChecked)
+                    .padding()
             }
             // ERROR MESSAGE
             if !registerVM.error.isEmpty {

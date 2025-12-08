@@ -20,6 +20,7 @@ class RegisterViewModel: ObservableObject {
     @Published var error:String = ""
     @Published var isLoading:Bool = false
     @Published var isRegistered:Bool = false
+    @Published var isChecked = false
     private var cancellables = Set<AnyCancellable>()
     let ref = Database.database().reference()
     
@@ -92,7 +93,7 @@ class RegisterViewModel: ObservableObject {
     }
     
     func registerUser(){
-        ref.child("Users").childByAutoId().setValue(["email": email,"name":name,"isAdmin": true]) { error, _ in
+        ref.child("Users").childByAutoId().setValue(["email": email,"name":name,"isAdmin":isChecked]) { error, _ in
             if let error = error {
                 print("Error writing data: \(error)")
             } 
