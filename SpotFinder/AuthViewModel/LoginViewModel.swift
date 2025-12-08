@@ -13,8 +13,9 @@ import FirebaseDatabase
 @MainActor
 class LoginViewModel:ObservableObject{
     
-    @Published var emailLogin:String = ""
-    @Published var password:String = ""
+    @Published var emailLogin:String = "akash.viet007@gmail.com"
+    @Published var name:String = ""
+    @Published var password:String = "abc123"
     @Published var error:String = ""
     @Published var isLoading:Bool = false
     @Published var isLoginSuccess = false

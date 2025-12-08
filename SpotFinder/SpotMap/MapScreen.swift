@@ -39,7 +39,7 @@ struct MapScreen: View {
 //                                }
 //                            }
 
-                        Text(place.name)
+                        Text(getDistanceText(place: place))
                             .font(.caption2)
                             .padding(.horizontal, 2)
                             .padding(.top, 2)
@@ -75,6 +75,27 @@ struct MapScreen: View {
             userLocation = loc?.coordinate
         }
         .ignoresSafeArea()
+    }
+    
+    func getDistanceText(place: Place) -> String {
+        if let userLocation {
+            let meters = userLocation.distance(from: place.coordinate)
+            if meters >= 1000 {
+                return String(format: "%.1f km", meters/1000)
+            } else {
+                return "\(Int(meters)) m"
+            }
+        }
+        return "--"
+    }
+}
+
+
+extension CLLocationCoordinate2D {
+    func distance(from coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
+        let loc1 = CLLocation(latitude: latitude, longitude: longitude)
+        let loc2 = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        return loc1.distance(from: loc2) // distance in meters
     }
 }
 extension MKMapView{
