@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import FirebaseAuth
+import FirebaseDatabase
 
 @MainActor
 class LoginViewModel:ObservableObject{
@@ -17,7 +18,9 @@ class LoginViewModel:ObservableObject{
     @Published var error:String = ""
     @Published var isLoading:Bool = false
     @Published var isLoginSuccess = false
+    @Published var islocationupdate = false
     private var cancellables = Set<AnyCancellable>()
+    let ref = Database.database().reference()
    
     func isEmailValid()->Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -50,6 +53,20 @@ class LoginViewModel:ObservableObject{
             }else{
                 print("User login")
                 self?.isLoginSuccess = true
+            }
+        }
+    }
+    
+   
+    
+    func getData(){
+        ref.child("Admin").child("parking").observe(.value) {[weak self] snapshot in
+            for child in snapshot.children {
+                if let snap = child as? DataSnapshot,
+                   let message = snap.key as? String {
+                    print("\(message)")
+                    self?.islocationupdate = true
+                }
             }
         }
     }

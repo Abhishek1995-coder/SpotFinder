@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import FirebaseAuth
+import FirebaseDatabase
 
 @MainActor
 class RegisterViewModel: ObservableObject {
@@ -19,6 +20,7 @@ class RegisterViewModel: ObservableObject {
     @Published var isLoading:Bool = false
     @Published var isRegistered:Bool = false
     private var cancellables = Set<AnyCancellable>()
+    let ref = Database.database().reference()
     
     init(){
         $email
@@ -83,7 +85,18 @@ class RegisterViewModel: ObservableObject {
                     self?.isRegistered = false
                 }else{
                     self?.isRegistered = true
+                    self?.registerUser()
                 }
+        }
+    }
+    
+    func registerUser(){
+        ref.child("Users").childByAutoId().setValue(["email": email, "isAdmin": true]) { error, _ in
+            if let error = error {
+                print("Error writing data: \(error)")
+            } else {
+               
+            }
         }
     }
 }
