@@ -10,16 +10,26 @@ import Combine
 import FirebaseAuth
 import FirebaseDatabase
 
+struct UserModel: Identifiable {
+    var id: String            // Firebase Key
+    var email: String
+    var isAdmin: Bool
+    var name: String?
+    var parkingKey: String
+}
+
 @MainActor
 class LoginViewModel:ObservableObject{
     
-    @Published var emailLogin:String = "akash.viet007@gmail.com"
-    @Published var password:String = "abc123"
+    @Published var emailLogin:String = "ghtf@gmail.com" //"akash.viet007@gmail.com"
+    @Published var password:String = "12345678" //"abc123"
     @Published var name:String = ""
     @Published var error:String = ""
     @Published var isLoading:Bool = false
     @Published var isLoginSuccess = false
     @Published var islocationupdate = false
+    @Published var myUser: UserModel?
+    
     private var cancellables = Set<AnyCancellable>()
     let ref = Database.database().reference()
    
@@ -54,8 +64,63 @@ class LoginViewModel:ObservableObject{
             }else{
                 print("User login")
                 self?.isLoginSuccess = true
+                self?.getMyUser()
+                //self?.fetchUsers()
             }
         }
     }
     
+    func getMyUser(){
+        ref.child("Users")
+            .queryOrdered(byChild: "email")
+            .queryEqual(toValue: emailLogin)
+            .observeSingleEvent(of: .value) { snapshot in
+                
+                for child in snapshot.children {
+                    if let snap = child as? DataSnapshot,
+                       let dict = snap.value as? [String: Any] {
+                        
+                        self.myUser = UserModel(
+                            id: snap.key,
+                            email: dict["email"] as? String ?? "",
+                            isAdmin: dict["isAdmin"] as? Bool ?? false,
+                            name: dict["name"] as? String,
+                            parkingKey: dict["parkingKey"] as? String ?? ""
+                        )
+                    }
+                }
+            }
+    }
+    
+    func fetchUsers() {
+        ref.child("Users").observe(.value) { snapshot in
+            //var temp: [UserModel] = []
+            
+            for child in snapshot.children {
+                if let snap = child as? DataSnapshot,
+                   let value = snap.value as? [String: Any] {
+                    
+                    let email = value["email"] as? String ?? ""
+                    let isAdmin = value["isAdmin"] as? Bool ?? false
+                    let name = value["name"] as? String ?? ""
+                    let parkingKey = value["parkingKey"] as? String ?? ""
+//                    temp.append(UserModel(id: snap.key,
+//                                          email: email,
+//                                          isAdmin: isAdmin,
+//                                          name: name))
+                    self.myUser = UserModel(id: snap.key,
+                                            email: email,
+                                            isAdmin: isAdmin,
+                                            name: name,
+                                            parkingKey: parkingKey)
+                    if email.lowercased() == email.lowercased(){
+                        
+                    }
+                }
+            }
+            //                DispatchQueue.main.async {
+            //                    self.users = temp
+            //                }
+        }
+    }
 }

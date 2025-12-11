@@ -93,7 +93,7 @@ class RegisterViewModel: ObservableObject {
     }
     
     func registerUser(){
-        ref.child("Users").childByAutoId().setValue(["email": email,"name":name,"isAdmin":isChecked]) { error, _ in
+        ref.child("Users").childByAutoId().setValue(["email": email,"name":name,"isAdmin":isChecked, "parkingKey":""]) { error, _ in
             if let error = error {
                 print("Error writing data: \(error)")
             } 

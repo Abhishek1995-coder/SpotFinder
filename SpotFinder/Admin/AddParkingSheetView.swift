@@ -1,9 +1,16 @@
-struct AddParkingSheetView: View {
-    var coordinate: CLLocationCoordinate2D
+//
+//  AddParkingSheetView.swift
+//  SpotFinder
+//
+//  Created by Akash Verma on 10/12/25.
+//
+import SwiftUI
 
+struct AddParkingSheetView: View {
+    @Binding var parking: Parking
     @State private var parkingName = ""
     
-    var onCreate: (String) -> Void
+    var onCreate: () -> Void
     var onCancel: () -> Void
 
     var body: some View {
@@ -13,14 +20,13 @@ struct AddParkingSheetView: View {
                 .padding(.top)
 
             VStack(alignment: .leading, spacing: 10) {
-                TextField("Parking Name", text: $parkingName)
+                TextField("Parking Name", text: $parking.name)
                     .textFieldStyle(.roundedBorder)
-
-                Text("Latitude: \(coordinate.latitude)")
-                    .font(.caption)
-
-                Text("Longitude: \(coordinate.longitude)")
-                    .font(.caption)
+                
+                counterRow(title: "Bike Slots", value: $parking.bikeCount, maxCount: 500)
+                counterRow(title: "Car Slots", value: $parking.carCount, maxCount: 500)
+                counterRow(title: "Bikes Booked", value: $parking.bikeBooking, maxCount: parking.bikeCount)
+                counterRow(title: "Car Booked", value: $parking.carBooking, maxCount: parking.carCount)
             }
             .padding(.horizontal)
 
@@ -36,7 +42,7 @@ struct AddParkingSheetView: View {
                 .cornerRadius(10)
 
                 Button("Create") {
-                    onCreate(parkingName)
+                    onCreate()
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -47,5 +53,30 @@ struct AddParkingSheetView: View {
             .padding(.horizontal)
             .padding(.bottom)
         }
+    }
+    
+    @ViewBuilder
+    func counterRow(title: String, value: Binding<Int>, maxCount: Int) -> some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Button("-") { if value.wrappedValue > 0 { value.wrappedValue -= 1 } }
+                .padding(.horizontal, 12)
+                .font(.title2)
+                .disabled(value.wrappedValue == 0)
+            
+            Text("\(value.wrappedValue)")
+                .frame(width: 40)
+            
+            Button("+") {
+                if value.wrappedValue < maxCount {
+                    value.wrappedValue += 1
+                }
+            }
+            .padding(.horizontal, 12)
+            .font(.title2)
+            .disabled(value.wrappedValue == maxCount)
+        }
+        .padding(.horizontal)
     }
 }

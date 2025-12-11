@@ -6,18 +6,22 @@
 //
 
 
-import SwiftUI
+import FirebaseDatabase
 import MapKit
+import SwiftUI
 
 @Observable class MapViewModel {
     var cameraPosition: MapCameraPosition = .automatic
     var route: MKRoute?
-    var selectedPlace: Place?
+    var selectedParking: Parking?
+    
+    let ref = Database.database().reference()
+    var parkings: [Parking] = []
 
-    func getRoute(to destination: CLLocationCoordinate2D, from userLocation: CLLocationCoordinate2D) {
+    func getRoute(from userLocation: CLLocationCoordinate2D) {
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: userLocation))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: selectedParking!.latitude, longitude: selectedParking!.longitude)))
         request.transportType = .automobile
 
         let directions = MKDirections(request: request)
@@ -25,6 +29,27 @@ import MapKit
             if let route = response?.routes.first {
                 self.route = route
                 self.cameraPosition = .rect(route.polyline.boundingMapRect)
+            }
+        }
+    }
+    
+    func fetchParkings() {
+        ref.child("Parkings").observe(.value) { snapshot in
+            self.parkings.removeAll()
+            for child in snapshot.children {
+                if let snap = child as? DataSnapshot,
+                   let value = snap.value as? [String: Any] {
+                    
+                    let name = value["name"] as? String ?? ""
+                    let bikeCount = value["bikeCount"] as? Int ?? 0
+                    let carCount = value["carCount"] as? Int ?? 0
+                    let bikeBooking = value["bikeBooking"] as? Int ?? 0
+                    let carBooking = value["carBooking"] as? Int ?? 0
+                    let latitude = value["latitude"] as? Double ?? 0
+                    let longitude = value["longitude"] as? Double ?? 0
+                    
+                    self.parkings.append(Parking(key: snap.key, name: name, bikeCount: bikeCount, carCount: carCount, bikeBooking: bikeBooking, carBooking: carBooking, latitude: latitude, longitude: longitude))
+                    }
             }
         }
     }

@@ -23,6 +23,11 @@
 		971D51F92EE5FFDB002FF4CF /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F62EE5FFDB002FF4CF /* Place.swift */; };
 		971D51FA2EE5FFDB002FF4CF /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F42EE5FFDB002FF4CF /* MapScreen.swift */; };
 		971D51FB2EE5FFDB002FF4CF /* LocationManagerNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D51F22EE5FFDB002FF4CF /* LocationManagerNew.swift */; };
+		971D52152EE8A56D002FF4CF /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D52142EE8A566002FF4CF /* AdminView.swift */; };
+		971D52172EE8AA12002FF4CF /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D52162EE8AA0A002FF4CF /* AdminViewModel.swift */; };
+		971D52192EE8B2A7002FF4CF /* AddParkingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D52182EE8B2A7002FF4CF /* AddParkingSheetView.swift */; };
+		971D521B2EE98082002FF4CF /* UpdateParkingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D521A2EE98082002FF4CF /* UpdateParkingSheetView.swift */; };
+		971D521D2EE99AD5002FF4CF /* ShowParkingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D521C2EE99ACC002FF4CF /* ShowParkingSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,11 @@
 		971D51F42EE5FFDB002FF4CF /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		971D51F52EE5FFDB002FF4CF /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		971D51F62EE5FFDB002FF4CF /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		971D52142EE8A566002FF4CF /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		971D52162EE8AA0A002FF4CF /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		971D52182EE8B2A7002FF4CF /* AddParkingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParkingSheetView.swift; sourceTree = "<group>"; };
+		971D521A2EE98082002FF4CF /* UpdateParkingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateParkingSheetView.swift; sourceTree = "<group>"; };
+		971D521C2EE99ACC002FF4CF /* ShowParkingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowParkingSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -106,6 +116,7 @@
 		04239E752EE4C6F300C3DC68 /* SpotFinder */ = {
 			isa = PBXGroup;
 			children = (
+				971D52132EE8A559002FF4CF /* Admin */,
 				971D51F12EE5FFB6002FF4CF /* SpotMap */,
 				046A6B1D2EE5B2C600EF6104 /* AuthView */,
 				046A6B182EE5AD8000EF6104 /* AuthViewModel */,
@@ -167,12 +178,24 @@
 		971D51F12EE5FFB6002FF4CF /* SpotMap */ = {
 			isa = PBXGroup;
 			children = (
+				971D521C2EE99ACC002FF4CF /* ShowParkingSheetView.swift */,
 				971D51F22EE5FFDB002FF4CF /* LocationManagerNew.swift */,
 				971D51F42EE5FFDB002FF4CF /* MapScreen.swift */,
 				971D51F52EE5FFDB002FF4CF /* MapViewModel.swift */,
 				971D51F62EE5FFDB002FF4CF /* Place.swift */,
 			);
 			path = SpotMap;
+			sourceTree = "<group>";
+		};
+		971D52132EE8A559002FF4CF /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				971D521A2EE98082002FF4CF /* UpdateParkingSheetView.swift */,
+				971D52182EE8B2A7002FF4CF /* AddParkingSheetView.swift */,
+				971D52162EE8AA0A002FF4CF /* AdminViewModel.swift */,
+				971D52142EE8A566002FF4CF /* AdminView.swift */,
+			);
+			path = Admin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,15 +348,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				971D521D2EE99AD5002FF4CF /* ShowParkingSheetView.swift in Sources */,
+				971D52172EE8AA12002FF4CF /* AdminViewModel.swift in Sources */,
 				971D51F72EE5FFDB002FF4CF /* MapViewModel.swift in Sources */,
 				971D51F92EE5FFDB002FF4CF /* Place.swift in Sources */,
+				971D52152EE8A56D002FF4CF /* AdminView.swift in Sources */,
 				971D51FA2EE5FFDB002FF4CF /* MapScreen.swift in Sources */,
 				971D51FB2EE5FFDB002FF4CF /* LocationManagerNew.swift in Sources */,
 				046A6B1F2EE5B2DF00EF6104 /* LoginView.swift in Sources */,
 				04239E762EE4C6F300C3DC68 /* ContentView.swift in Sources */,
 				04239E772EE4C6F300C3DC68 /* SpotFinderApp.swift in Sources */,
+				971D521B2EE98082002FF4CF /* UpdateParkingSheetView.swift in Sources */,
 				04239E7B2EE4C81400C3DC68 /* LocationManager.swift in Sources */,
 				046A6B1C2EE5B24C00EF6104 /* LoginViewModel.swift in Sources */,
+				971D52192EE8B2A7002FF4CF /* AddParkingSheetView.swift in Sources */,
 				046A6B1A2EE5AD9D00EF6104 /* RegisterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

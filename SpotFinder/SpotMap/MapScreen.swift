@@ -12,62 +12,79 @@ import MapKit
 struct MapScreen: View {
     @State private var viewModel = MapViewModel()
     @State private var userLocation: CLLocationCoordinate2D?
-
-    let places = [
-        Place(name: "Taj Mahal", coordinate: .init(latitude: 27.1751, longitude: 78.0421)),
-        Place(name: "India Gate", coordinate: .init(latitude: 28.6129, longitude: 77.2295)),
-        Place(name: "Qutub Minar", coordinate: .init(latitude: 28.5244, longitude: 77.1855))
-    ]
+    @State private var showParkingSheet = false
 
     var body: some View {
-        Map(position: $viewModel.cameraPosition) {
-
-            UserAnnotation()
-
-            ForEach(places) { place in
-                Annotation(place.name, coordinate: place.coordinate) {
-                    ZStack {
-//                        Image(systemName: "bubble.middle.bottom.fill")
-//                            .resizable()
-//                            .font(.title)
-//                            .foregroundStyle(Color.init(red: 7/255, green: 173/255, blue: 167/255))
-//                            .frame(width: 60, height: 40, alignment: .center)
-//                            .onTapGesture {
-//                                viewModel.selectedPlace = place
-//                                if let userLocation {
-//                                    viewModel.getRoute(to: place.coordinate, from: userLocation)
-//                                }
-//                            }
-
-                        Text(getDistanceText(place: place))
-                            .font(.caption2)
-                            .padding(.horizontal, 2)
-                            .padding(.top, 2)
-                            .padding(.bottom, 6)
-                            .background(
-                                Image(systemName: "bubble.middle.bottom.fill")
-                                .resizable()
-                                .font(.title)
-                                .foregroundStyle(Color.init(red: 7/255, green: 173/255, blue: 167/255)))
-                            .onTapGesture {
-                                viewModel.selectedPlace = place
-                                if let userLocation {
-                                    viewModel.getRoute(to: place.coordinate, from: userLocation)
+        VStack(alignment: .leading){
+            Text("Find Parking")
+                .font(.largeTitle)
+                .bold()
+                .padding(.horizontal)
+            Text("Nearby available spots")
+                .font(.subheadline)
+                .padding(.horizontal)
+            Map(position: $viewModel.cameraPosition) {
+                
+                UserAnnotation()
+                
+                ForEach(viewModel.parkings) { place in
+                    Annotation(place.name, coordinate: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)) {
+                        ZStack {
+                            Text(getDistanceText(place: place))
+                                .font(.caption2)
+                                .padding(.horizontal, 2)
+                                .padding(.top, 2)
+                                .padding(.bottom, 6)
+                                .background(
+                                    Image(systemName: "bubble.middle.bottom.fill")
+                                        .resizable()
+                                        .font(.title)
+                                        .foregroundStyle(Color.init(red: 7/255, green: 173/255, blue: 167/255)))
+                                .onTapGesture {
+                                    viewModel.selectedParking = place
+                                    showParkingSheet = true
+//                                    if let userLocation {
+//                                        viewModel.getRoute(from: userLocation)
+//                                    }
                                 }
-                            }
+                        }
                     }
                 }
+                
+                if let route = viewModel.route {
+                    MapPolyline(route.polyline)
+                        .stroke(.blue, lineWidth: 5)
+                }
             }
-
-            if let route = viewModel.route {
-                MapPolyline(route.polyline)
-                    .stroke(.blue, lineWidth: 5)
+            .sheet(isPresented: $showParkingSheet) {
+                ShowParkingSheetView(
+                    parking: viewModel.selectedParking!,
+                    distance: getDistanceText(place: viewModel.selectedParking!),
+                    reserveCar: {
+                        // increment count in Parking & save
+                        // save parking key & type as car in preference
+                    },
+                    reserveBike: {
+                        
+                    },
+                    onGetDirection: {
+                        if let userLocation {
+                            viewModel.getRoute(from: userLocation)
+                        }
+                        
+                        showParkingSheet = false
+                        viewModel.selectedParking = nil
+                    }
+                )
+                .presentationDetents([.height(200.0)])
+                .presentationDragIndicator(.visible)
             }
         }
         .ignoresSafeArea()
 
         .onAppear {
             LocationManagerNew.shared.requestLocation()
+            viewModel.fetchParkings()
         }
         /// Listen for live user location updates
         .onReceive(LocationManagerNew.shared.$location) { loc in
@@ -76,9 +93,9 @@ struct MapScreen: View {
         .ignoresSafeArea()
     }
     
-    func getDistanceText(place: Place) -> String {
+    func getDistanceText(place: Parking) -> String {
         if let userLocation {
-            let meters = userLocation.distance(from: place.coordinate)
+            let meters = userLocation.distance(from: CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude))
             if meters >= 1000 {
                 return String(format: "%.1f km", meters/1000)
             } else {

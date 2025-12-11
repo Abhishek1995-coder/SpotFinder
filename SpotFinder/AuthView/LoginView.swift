@@ -15,11 +15,12 @@ struct LoginView: View {
     
     var body: some View {
         if loginVM.isLoginSuccess{
-            VStack{
+            VStack(spacing: 0){
                 ZStack(alignment: .trailing){
                     Text("SpotFinder")
                         .frame(maxWidth: .infinity)
-                    Text("\(loginVM.name.uppercased().first ?? "J")")
+                        .bold()
+                    Text("\(loginVM.myUser?.name?.uppercased().first ?? "J")")
                         .padding(8)
                         .background(Circle().fill(.gray).opacity(0.3))
                         .padding(.trailing, 10)
@@ -37,7 +38,13 @@ struct LoginView: View {
                     }
                 })
                 .frame(maxWidth: .infinity)
-                MapScreen()
+                
+                if loginVM.myUser?.isAdmin ?? false{
+                    AdminView()
+                } else{
+                    MapScreen()
+                    //.environmentObject(loginVM)
+                }
             }
         } else{
             VStack(spacing: 24) {
@@ -45,13 +52,6 @@ struct LoginView: View {
                     .font(.system(size: 34, weight: .bold))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 VStack{
-                    TextField("Name", text: $loginVM.name)
-                        .keyboardType(.emailAddress)
-                        .autocapitalization(.none)
-                        .autocorrectionDisabled()
-                        .padding()
-                        .background(.gray.opacity(0.3))
-                        .cornerRadius(14)
                     
                     TextField("Email", text: $loginVM.emailLogin)
                         .keyboardType(.emailAddress)
