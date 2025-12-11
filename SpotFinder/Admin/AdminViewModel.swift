@@ -66,6 +66,8 @@ struct Parking: Identifiable, Equatable{
         }
     }
     
+
+    
     func deleteParking(parking: Parking){
         let uniqueId = parking.key
         

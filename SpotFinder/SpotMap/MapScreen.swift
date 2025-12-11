@@ -59,13 +59,15 @@ struct MapScreen: View {
             .sheet(isPresented: $showParkingSheet) {
                 ShowParkingSheetView(
                     parking: viewModel.selectedParking!,
-                    distance: getDistanceText(place: viewModel.selectedParking!),
+                    distance: getDistanceText(place: viewModel.selectedParking!), arrBooking: $viewModel.arrayBookParking,
                     reserveCar: {
                         // increment count in Parking & save
                         // save parking key & type as car in preference
+                        viewModel.carParkingBooked(parking: viewModel.selectedParking!)
+
                     },
                     reserveBike: {
-                        
+                        viewModel.bikeParkingBooked(parking: viewModel.selectedParking!)
                     },
                     onGetDirection: {
                         if let userLocation {
@@ -130,3 +132,4 @@ extension MKMapView{
         }
     }
 }
+

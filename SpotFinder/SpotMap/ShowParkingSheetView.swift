@@ -9,9 +9,12 @@ import SwiftUI
 struct ShowParkingSheetView: View {
     var parking: Parking
     var distance: String
+    @Binding var arrBooking: [BookedParking]
     @State private var parkingName = ""
     
     var reserveCar: () -> Void
+    @State var isDisableBikeBooking = false
+    @State var isDisableCarBooking = false
     var reserveBike: () -> Void
     var onGetDirection: () -> Void
     
@@ -29,10 +32,12 @@ struct ShowParkingSheetView: View {
             HStack {
                 if parking.carCount > parking.carBooking{
                     Text("Available Car Slots: \(parking.carCount - parking.carBooking)")
-                    
                     Button("Reserve") {
                         reserveCar()
+                        isDisableCarBooking = true
+                        setCarBookingUpdate()
                     }
+                    .disabled(isDisableCarBooking)
                 } else{
                     Text("No Car slot available")
                 }
@@ -44,7 +49,10 @@ struct ShowParkingSheetView: View {
                     
                     Button("Reserve") {
                         reserveBike()
+                        isDisableBikeBooking = true
+                        setBikeBookingUpdate()
                     }
+                    .disabled(isDisableBikeBooking)
                 } else{
                     Text("No Bike slot available")
                 }
@@ -61,5 +69,32 @@ struct ShowParkingSheetView: View {
             )
             .foregroundColor(.white)
         }
+        .onAppear {
+            checkForReserver()
+        }
     }
+    
+    private func checkForReserver(){
+        if let index = arrBooking.firstIndex(where: { $0.key == parking.key }) {
+            if arrBooking[index].bookingCar == true && arrBooking[index].carCount > 0{
+                isDisableCarBooking = true
+            }
+            if  arrBooking[index].bookingBike == true && arrBooking[index].bikeCount > 0{
+                isDisableBikeBooking = true
+            }
+        }
+    }
+    
+    private func setCarBookingUpdate() {
+        if let index = arrBooking.firstIndex(where: { $0.key == parking.key }) {
+            arrBooking[index].bookingCar = true
+        }
+    }
+    
+    private func setBikeBookingUpdate() {
+        if let index = arrBooking.firstIndex(where: { $0.key == parking.key }) {
+            arrBooking[index].bookingBike = true
+        }
+    }
+  
 }

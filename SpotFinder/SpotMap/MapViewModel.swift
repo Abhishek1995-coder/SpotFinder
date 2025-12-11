@@ -10,10 +10,22 @@ import FirebaseDatabase
 import MapKit
 import SwiftUI
 
+struct BookedParking{
+    var key : String
+    var bookingCar:Bool
+    var bookingBike:Bool
+    var carCount:Int
+    var bikeCount:Int
+}
+
+
+
 @Observable class MapViewModel {
     var cameraPosition: MapCameraPosition = .automatic
     var route: MKRoute?
     var selectedParking: Parking?
+    var arrayBookParking = [BookedParking]()
+    
     
     let ref = Database.database().reference()
     var parkings: [Parking] = []
@@ -33,6 +45,34 @@ import SwiftUI
         }
     }
     
+    func bikeParkingBooked(parking: Parking){
+        let uniqueId = parking.key
+        let bikeBooking = parking.bikeBooking
+        let updateData: [String: Any] = ["bikeBooking" : bikeBooking + 1]
+        ref.child("Parkings").child(uniqueId).updateChildValues(updateData) { error, _ in
+            if let error = error {
+                print("Update error: \(error.localizedDescription)")
+            } else {
+                print("Updated successfully!")
+            }
+        }
+    }
+    
+    func carParkingBooked(parking: Parking){
+        let uniqueId = parking.key
+        let carBooking = parking.carBooking
+        let updateData: [String: Any] = ["carBooking" : carBooking + 1]
+
+        ref.child("Parkings").child(uniqueId).updateChildValues(updateData) { error, _ in
+            if let error = error {
+                print("Update error: \(error.localizedDescription)")
+            } else {
+                print("Updated successfully!")
+            }
+        }
+    }
+    
+    
     func fetchParkings() {
         ref.child("Parkings").observe(.value) { snapshot in
             self.parkings.removeAll()
@@ -49,6 +89,7 @@ import SwiftUI
                     let longitude = value["longitude"] as? Double ?? 0
                     
                     self.parkings.append(Parking(key: snap.key, name: name, bikeCount: bikeCount, carCount: carCount, bikeBooking: bikeBooking, carBooking: carBooking, latitude: latitude, longitude: longitude))
+                    self.arrayBookParking.append(BookedParking(key: snap.key, bookingCar: false, bookingBike: false,carCount: carCount,bikeCount: bikeCount))
                     }
             }
         }
